@@ -1,0 +1,49 @@
+ENV["TERM"] = "xterm-256color"
+ENV["LC_ALL"] = "en_US.UTF-8"
+
+Vagrant.configure("2") do |config|
+   config.ssh.username = 'core'
+   config.ssh.insert_key = true
+   config.vm.define "flatcar_vm1" do |vm1|
+     vm1.vm.box = "flatcar-alpha"
+     vm1.vm.hostname = "flatcar-vm1"
+     vm1.vm.network "private_network", ip: "192.168.56.11"
+     vm1.vm.provider "virtualbox" do |vb|
+       vb.memory = "12288" 
+       vb.cpus = 4
+       vb.check_guest_additions = false
+       vb.functional_vboxsf = false
+     end
+   end
+ 
+   # Define VM 2
+   config.ssh.username = 'core'
+   config.ssh.insert_key = true
+   config.vm.define "flatcar_vm2" do |vm2|
+     vm2.vm.box = "flatcar-alpha"
+     vm2.vm.hostname = "flatcar-vm2"
+     vm2.vm.network "private_network", ip: "192.168.56.12"
+     vm2.vm.provider "virtualbox" do |vb|
+       vb.memory = "12288"
+       vb.cpus = 4         
+       vb.check_guest_additions = false
+       vb.functional_vboxsf = false
+     end
+   end
+ 
+   # Define VM 3
+   config.ssh.username = 'core'
+   config.ssh.insert_key = true
+   config.vm.define "flatcar_vm3" do |vm3|
+     vm3.vm.box = "flatcar-alpha"
+     vm3.vm.hostname = "flatcar-vm3"
+     vm3.vm.network "private_network", ip: "192.168.56.13"
+     vm3.vm.provider "virtualbox" do |vb|
+       vb.memory = "12288"
+       vb.cpus = 4
+       vb.check_guest_additions = false
+       vb.functional_vboxsf = false
+     end
+   end
+end
+ 
